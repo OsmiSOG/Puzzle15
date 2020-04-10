@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600;700&family=Chewy&family=Fredoka+One&display=swap');
+
+body {
+  font-family: 'Baloo Paaji 2', cursive;
+  text-align: center;
+  background-image: url("img/cake-3107967_1280.png");
+  background-repeat: repeat;
+  background-size: cover;
+  font-size: 18pt;
+  font-weight: lighter;
+}
+
+.title {
+  font-family: 'Chewy', cursive;
+  font-size: 40pt;
+  letter-spacing: 5pt;
+  font-weight: normal;
+  margin-bottom: 1%;
+  text-shadow: 2px 2px 10px rgb(0, 255, 255);
+}
+
+.time {
+  display: inline;
+  padding-right: 1%;
+  padding-left: 1%;
+  border-radius: 5em 30em 5em 30em;
+  background-color: rgb(39, 55, 70, 0.5);
+}
+
+.move {
+  display: inline;
+  padding-right: 1%;
+  padding-left: 1%;
+  border-radius: 5em 30em 5em 30em;
+  background-color: rgb(39, 55, 70, 0.5);
+}
+
+.footer {
+    font-family: 'Fredoka One', cursive;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+
+.play:hover{
+  cursor: pointer;
+}
+
+.play img {
+  width: 100px;
+}
+
+.preloads{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.preloads:hover {
+  cursor: progress;
+}
+
+.single5 {
+  align-self: center;
+  height: 50px;
+  width: 50px;
+  background-color: pink;
+  -webkit-animation: single5 5s infinite linear;
+  animation: single5 5s infinite linear;
+}
+
+@-webkit-keyframes single5 {
+   0% {
+      -webkit-transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+      background-color: #F4D03F;
+   }
+   25% {
+      -webkit-transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+      background-color: #52B3D9;
+   }
+   50% {
+      -webkit-transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+      background-color: #EC644B;
+   }
+   75% {
+      -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(179.9deg);
+      background-color: #68C3A3;
+   }
+   100% {
+      -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(360deg);
+      background-color: #F4D03F;
+   }
+}
+
+@keyframes single5 {
+   0% {
+      transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+      -webkit-transform: perspective(180px) rotateX(0deg) rotateY(0deg);
+      background-color: #F4D03F;
+   }
+   25% {
+      transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(180px) rotateX(-180.1deg) rotateY(0deg);
+      background-color: #52B3D9;
+   }
+   50% {
+      transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+      -webkit-transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+      background-color: #EC644B;
+   }
+   75% {
+      transform: perspective(180px) rotateX(-180deg) rotateY(179.9deg);
+      -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(179.9deg);
+      background-color: #68C3A3;
+   }
+   100% {
+      transform: perspective(180px) rotateX(0deg) rotateY(360deg);
+      -webkit-transform: perspective(180px) rotateX(-360deg) rotateY(360deg);
+      background-color: #F4D03F;
+   }
+}
+
+#thumbnailImage{
+  align-self: stretch;
+  flex: 1 1 1;
+  width: 10%;
+  margin-left: 5%;
+  border-radius: 5px;
+}
+
+#thumbnailImage img{
+  width: 100%;
+  border-radius: inherit;
+}
+
+.puzzle {
+  flex: 1 1 1;
+  display: table;
+  padding: 0.5em;
+}
+
+.row-box {
+  display: table-row;
+}
+
+.col-box {
+  display: table-cell;
+  padding: 1px;
+}
+
+.img-box {
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+div[id='-1']{
+  background-color: rgb(224, 224, 224, 0.5);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
