@@ -8,6 +8,11 @@ let imgSlice = [];
 let cardsDisplayed = [];
 let start = false;
 
+/**
+ * preloaderImg - create a DOMElement for preload image
+ *
+ * @return {object}  The DOMElement
+ */
 function preloaderImg() {
   let preImg = document.createElement('div');
   preImg.className = 'single5';
@@ -20,6 +25,11 @@ function preloaderImg() {
   return container;
 }
 
+/**
+ * movePiece - move the tile of the puzzle in the DOM
+ *
+ * @param  {object} e event of element
+ */
 function movePiece(e) {
   if(e.target.localName !== 'div'){
     console.log(e.target.parentNode, cardsDisplayed);
@@ -49,6 +59,11 @@ function movePiece(e) {
           item.firstChild.onclick = null
         });
       });
+      saveNewResult({
+          time:`${puzzle.time} s`,
+          movements: puzzle.movements,
+          difficulty:`${puzzle.sizePuzzle}x${puzzle.sizePuzzle}`
+        })
       swal({
         title: "Congratulations!",
         text: "You are won",
@@ -58,10 +73,20 @@ function movePiece(e) {
   }
 }
 
+/**
+ * uploadImage - get de image of the input
+ *
+ * @param {object} element input file image
+ */
 const uploadImage = (input) => {
   imageFile = input.files[0]
 }
 
+/**
+ * setMatrix - init setMatrix of puzzle
+ *
+ * @param {object} elementDimension  select element with size value
+ */
 const setMatrix = (elementDimension) => {
   if (!start) {
     switch (parseInt(elementDimension.value)) {
@@ -87,6 +112,11 @@ const setMatrix = (elementDimension) => {
   }
 }
 
+/**
+ * matrixDisplay - displayed the puzzle matrix
+ *
+ * @param {number} size
+ */
 const matrixDisplay = (size) => {
   let divRow;
   let divCol;
@@ -109,6 +139,10 @@ const matrixDisplay = (size) => {
   }
 }
 
+/**
+ * puzzleDisplay - displayed the image content in the puzzle
+ *
+ */
 const puzzleDisplay = () => {
   let imgSliceDiv;
   let xpuzzle = 0
@@ -136,8 +170,12 @@ const puzzleDisplay = () => {
   });
 }
 
-
-function loadImage(imgFile) {
+/**
+ * loadImage - wait to a image is full loaded
+ *
+ * @return {Promise<Image>}         The image from input upload
+ */
+function loadImage() {
   return new Promise((resolve, reject)=>{
     const img = new Image()
     img.onload = () => {resolve(img)}
@@ -146,6 +184,11 @@ function loadImage(imgFile) {
   });
 }
 
+/**
+ * generateCutImages - cut the images tail of the image upload
+ *
+ * @param {object} img image upload
+ */
 const generateCutImages = (img) => {
   let chunks = []
   let canvas;
@@ -169,6 +212,11 @@ const generateCutImages = (img) => {
   return chunks;
 }
 
+/**
+ * thumbnailImage - Thumbnail of the image and add in the puzzle
+ *
+ * @param  {string} imgSrc File location
+ */
 function thumbnailImage(imgSrc){
   let container = document.createElement('div')
   container.id = 'thumbnailImage'
@@ -179,12 +227,18 @@ function thumbnailImage(imgSrc){
   gameField.appendChild(container)
 }
 
+/**
+ * startGame - start functionalities for puzzle play
+ *
+ * @param  {object} e event of elemet
+ */
 function startGame(e) {
   let uploadField = document.getElementsByClassName('upload')[0]
-  setMatrix(uploadField.children[0])
-  uploadImage(uploadField.children[1])
+  setMatrix(uploadField.querySelector('select'))
+  uploadImage(uploadField.querySelector('input[type=file]'))
   if (imageFile && puzzle.sizePuzzle) {
     playField.hidden = true;
+    console.log('here')
     imgLoaded = loadImage();
     preImg = preloaderImg();
     gameField.appendChild(preImg)
@@ -216,6 +270,9 @@ function startGame(e) {
   }
 }
 
+/**
+ * gameAgain - Restart the game
+ */
 function gameAgain(){
   puzzle.restart()
   let miniature = document.getElementById('thumbnailImage')
@@ -226,10 +283,6 @@ function gameAgain(){
   cardsDisplayed = []
   timeDiv.innerText = `Time : ${puzzle.time} s`
   moveDiv.innerText = `# moves : ${puzzle.movements}`
-}
-
-window.onload = () => {
-  puzzleField.hidden = true;
 }
 
 playField.addEventListener('click', startGame, false);
